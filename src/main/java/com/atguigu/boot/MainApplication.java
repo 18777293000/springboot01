@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @创建时间 2021/3/2 0002
  * @描述主入口，所有内容的入口都经过这里
  **/
+
 @SpringBootApplication
 public class MainApplication {
     public static void main(String[] args){
@@ -20,5 +21,11 @@ public class MainApplication {
 //        for (String item : name){
 //            System.out.println(item);
 //        }
+
+        boolean tom = run.containsBean("tomcatPet");
+        System.out.println(tom);
+
+        boolean user = run.containsBean("user01");
+        System.out.println(user);
     }
 }
