@@ -1,4 +1,4 @@
-package com.atguigu.boot.com.atguigu.boot.bean;
+package com.atguigu.boot.bean;
 
 /**
  * @创建人 ym

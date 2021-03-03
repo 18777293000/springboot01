@@ -1,4 +1,4 @@
-package com.atguigu.boot.com.atguigu.boot.bean;
+package com.atguigu.boot.bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
