@@ -21,6 +21,7 @@
         <!--<mysql.version>5.1.43</mysql.version>-->
     <!--</properties>-->
 
+    <!--相当于在这里配置插件，可以是spring提供的，也可以是github上个人提供的-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -31,6 +32,32 @@
             <!--<groupId>mysql</groupId>-->
             <!--<artifactId>mysql-connector-java</artifactId>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <!--分页-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.13</version>
+        </dependency>
+
+        <!--数据库驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!--数据源-->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.5</version>
+        </dependency>
     </dependencies>
 
     <build>
