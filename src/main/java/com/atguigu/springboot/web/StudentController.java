@@ -32,15 +32,15 @@ public class StudentController {
 //        return retMap;
 //    }
 //
-//    @RequestMapping("/student/detail/{id}/{status}")
-//    public Object student03(@PathVariable("id") Integer id,
-//                            @PathVariable("status") Integer status){
-//        Map<String, Object> retMap = new HashMap<>();
-//
-//        retMap.put("id", id);
-//        retMap.put("status", status);
-//        return retMap;
-//    }
+    @RequestMapping("/student/detail/{id}/{status}")
+    public Object student03(@PathVariable("id") Integer id,
+                            @PathVariable("status") Integer status){
+        Map<String, Object> retMap = new HashMap<>();
+
+        retMap.put("id", id);
+        retMap.put("status", status);
+        return retMap;
+    }
 
     //student02和student03在实际使用过程中虽然不会报错，但是其实语义混淆，会导致参数对应的方法错误
     //下面写RESTFUL风格的参数获取方式，通过注解区分,加上修改路径名的方法
