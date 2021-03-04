@@ -8,6 +8,7 @@ package com.atguigu.springboot.utils;
 public class AssertUtil {
     public static void isTrue(Boolean flag, String msg){
         if(flag){
+            System.out.println("error");
 //            throw new ParamsException(msg);
         }
     }
