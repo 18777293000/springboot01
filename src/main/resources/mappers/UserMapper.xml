@@ -3,8 +3,42 @@
 
 <mapper namespace="com.atguigu.springboot.dao.UserDao">
 
+    <select id="queryById" parameterType="int" resultType="com.atguigu.springboot.vo.User">
+        select *
+        from t_user
+        where id = #{id, jdbcType=INTEGER}
+    </select>
+
     <select id="queryUserByUserName" parameterType="string" resultType="com.atguigu.springboot.vo.User">
         select id,user_name,user_pwd
-        from t_user where user_name = #{name}
+        from t_user
+        where user_name = #{name}
     </select>
+
+    <!--插入语句-->
+    <insert id="save" parameterType="com.atguigu.springboot.vo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user(id,user_name,user_pwd) values(#{id}, #{userName}, #{userPwd})
+        where id = #{id}
+    </insert>
+
+    <update id="update" parameterType="com.atguigu.springboot.vo.User">
+        update t_user set  user_name = #{userName}, user_pwd = #{userPwd}
+        where id = #{id}
+    </update>
+
+    <select id="selectByParame" parameterType="com.atguigu.springboot.query.UserQuery" resultType="com.atguigu.springboot.vo.User">
+        select *
+        from t_user
+        <where>
+            <if test="null != userName and userName != ''">
+                and user_name like concat('%', #{userName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!--delete的xml查询语句里面没有resultType参数-->
+    <delete id="delete" parameterType="int">
+        delete from t_user
+        where id=#{id}
+    </delete>
 </mapper>

@@ -19,4 +19,12 @@ public class UserService {
     public User queryUserByName(String name){
         return userDao.queryUserByUserName(name);
     }
+
+    public User queryUserById(Integer userId){
+        return userDao.queryById(userId);
+    }
+
+    public void saveUser(User user){
+
+    }
 }

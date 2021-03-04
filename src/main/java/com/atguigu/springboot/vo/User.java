@@ -7,15 +7,15 @@ package com.atguigu.springboot.vo;
  **/
 public class User {
     private Integer id;
-    private String user_name;
-    private Integer user_pwd;
+    private String userName;
+    private Integer userPwd;
 
     public User(){}
 
-    public User(Integer id, String user_name, Integer user_pwd){
+    public User(Integer id, String userName, Integer userPwd){
         this.id = id;
-        this.user_name = user_name;
-        this.user_pwd = user_pwd;
+        this.userName = userName;
+        this.userPwd = userPwd;
     }
 
     public Integer getId(){
@@ -23,11 +23,11 @@ public class User {
     }
 
     public String getName(){
-        return user_name;
+        return userName;
     }
 
     public Integer getPwd(){
-        return user_pwd;
+        return userPwd;
     }
 
     public void setId(Integer id){
@@ -35,10 +35,10 @@ public class User {
     }
 
     public void setName(String name){
-        this.user_name = name;
+        this.userName = name;
     }
 
     public void setPwd(Integer pwd){
-        this.user_pwd = pwd;
+        this.userPwd = pwd;
     }
 }
