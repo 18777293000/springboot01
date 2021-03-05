@@ -2,10 +2,15 @@ package com.atguigu.springboot.service;
 
 import com.atguigu.springboot.dao.UserDao;
 import com.atguigu.springboot.vo.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.atguigu.springboot.utils.AssertUtil;
+import com.atguigu.springboot.query.UserQuery;
+
+import java.util.List;
 
 /**
  * @创建人 ym
@@ -50,12 +55,18 @@ public class UserService {
         AssertUtil.isTrue(userDao.queryById(user.getId())==null, "用户不存在");
 
         User temp = userDao.queryUserByUserName(user.getName());
-        AssertUtil.isTrue(temp != null && !(temp.getId().equals(user.getId())), "用户已经存在");
+//        AssertUtil.isTrue(temp != null && !(temp.getId().equals(user.getId())), "用户已经存在");
         AssertUtil.isTrue(userDao.update(user) < 1, "用户跟新失败");
     }
 
     public void deleteUser(Integer userId){
         AssertUtil.isTrue(userDao.queryById(userId) == null || userId == null, "用户不存在");
         AssertUtil.isTrue(userDao.delete(userId) < 1, "删除用户失败");
+    }
+
+    public PageInfo<User> queryUserByParams(UserQuery userQuery){
+        PageHelper.startPage(userQuery.getPageNum(), userQuery.getPageSize());
+        List<User> users = userDao.selectByParame(userQuery);
+        return new PageInfo<User>(users);
     }
 }

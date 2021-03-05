@@ -2,6 +2,7 @@ package com.atguigu.springboot.dao;
 
 import com.atguigu.springboot.vo.User;
 import org.springframework.stereotype.Repository;
+import com.atguigu.springboot.query.UserQuery;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface UserDao {
 
      public int update(User user);
 
-//     public List<User> selectByParame(UserQuery userQuery);
+     public List<User> selectByParame(UserQuery userQuery);
 
      public int delete(Integer id);
 }
