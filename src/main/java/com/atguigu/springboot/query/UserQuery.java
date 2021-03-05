@@ -8,6 +8,7 @@ package com.atguigu.springboot.query;
 public class UserQuery {
     private Integer pageNum = 1;
     private Integer pageSize = 10;
+    private String userName;
 
     public Integer getPageNum(){
         return this.pageNum;
@@ -23,5 +24,13 @@ public class UserQuery {
 
     public void setPageSize(Integer pageSize){
         this.pageSize = pageSize;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
     }
 }

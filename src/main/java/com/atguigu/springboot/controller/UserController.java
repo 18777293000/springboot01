@@ -2,8 +2,10 @@ package com.atguigu.springboot.controller;
 
 import com.atguigu.springboot.exceptions.ParamsException;
 import com.atguigu.springboot.model.ResultInfo;
+import com.atguigu.springboot.query.UserQuery;
 import com.atguigu.springboot.service.UserService;
 import com.atguigu.springboot.vo.User;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -88,6 +90,11 @@ public class UserController {
             e.printStackTrace();
         }
         return resultInfo;
+    }
+
+    @GetMapping("user/list")
+    public PageInfo<User> queryUserByParams(UserQuery userQuery){
+        return userService.queryUserByParams(userQuery);
     }
 
 

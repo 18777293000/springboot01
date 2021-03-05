@@ -25,15 +25,15 @@
         where id = #{id}
     </update>
 
-    <!--<select id="selectByParame" parameterType="com.atguigu.springboot.query.UserQuery" resultType="com.atguigu.springboot.vo.User">-->
-        <!--select *-->
-        <!--from t_user-->
-        <!--<where>-->
-            <!--<if test="null != userName and userName != ''">-->
-                <!--and user_name like concat('%', #{userName}, '%')-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</select>-->
+    <select id="selectByParame" parameterType="com.atguigu.springboot.query.UserQuery" resultType="com.atguigu.springboot.vo.User">
+        select *
+        from t_user
+        <where>
+            <if test="null != userName and userName != ''">
+                and user_name like concat('%', #{userName}, '%')
+            </if>
+        </where>
+    </select>
 
     <!--delete的xml查询语句里面没有resultType参数-->
     <delete id="delete" parameterType="int">
