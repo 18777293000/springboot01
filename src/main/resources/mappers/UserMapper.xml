@@ -15,10 +15,9 @@
         where user_name = #{name}
     </select>
 
-    <!--插入语句-->
+    <!--插入语句 where id = #{id}  XML文件只存在这个样子的屏蔽方式，其他方式都是失效的-->
     <insert id="save" parameterType="com.atguigu.springboot.vo.User" useGeneratedKeys="true" keyProperty="id">
         insert into t_user(id,user_name,user_pwd) values(#{id}, #{userName}, #{userPwd})
-        where id = #{id}
     </insert>
 
     <update id="update" parameterType="com.atguigu.springboot.vo.User">
@@ -26,15 +25,15 @@
         where id = #{id}
     </update>
 
-    <select id="selectByParame" parameterType="com.atguigu.springboot.query.UserQuery" resultType="com.atguigu.springboot.vo.User">
-        select *
-        from t_user
-        <where>
-            <if test="null != userName and userName != ''">
-                and user_name like concat('%', #{userName}, '%')
-            </if>
-        </where>
-    </select>
+    <!--<select id="selectByParame" parameterType="com.atguigu.springboot.query.UserQuery" resultType="com.atguigu.springboot.vo.User">-->
+        <!--select *-->
+        <!--from t_user-->
+        <!--<where>-->
+            <!--<if test="null != userName and userName != ''">-->
+                <!--and user_name like concat('%', #{userName}, '%')-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
 
     <!--delete的xml查询语句里面没有resultType参数-->
     <delete id="delete" parameterType="int">

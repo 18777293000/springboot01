@@ -6,7 +6,6 @@ import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.atguigu.springboot.utils.AssertUtil;
-import org.springframework.util.Assert;
 
 /**
  * @创建人 ym
@@ -28,16 +27,26 @@ public class UserService {
     }
 
     public void saveUser(User user){
-        AssertUtil.isTrue(StringUtils.isBlank(user.getName()), "用户名不能为空");
-        AssertUtil.isTrue(StringUtils.isBlank(user.getPwd()), "密码不能为空");
+//        System.out.println(user.getId());
+//        System.out.println(user.getName());
+//        System.out.println(user.getPwd());
+//        User temp = new User(70, "admin", 123456);
+//        System.out.println(temp.getId());
+//        System.out.println(temp.getName());
+//        System.out.println(temp.getPwd());
+//        userDao.save(user);
+//        AssertUtil.isTrue(StringUtils.isBlank(user.getName()), "用户名不能为空");
+//        AssertUtil.isTrue(StringUtils.isBlank(user.getPwd()), "密码不能为空");
+        AssertUtil.isTrue(user.getName() == "", "用户名不能为空");
+        AssertUtil.isTrue(user.getPwd() == null, "密码不能为空");
         AssertUtil.isTrue(userDao.queryUserByUserName(user.getName()) != null, "用户已经存在");
         AssertUtil.isTrue(userDao.queryById(user.getId()) != null, "用户名不能为空");
         AssertUtil.isTrue(userDao.save(user) < 1, "用户添加失败");
     }
 
     public void updateUser(User user){
-        AssertUtil.isTrue(StringUtils.isBlank(user.getName()), "用户名不能为空");
-        AssertUtil.isTrue(StringUtils.isBlank(user.getPwd()), "密码不能为空");
+//        AssertUtil.isTrue(StringUtils.isBlank(user.getName()), "用户名不能为空");
+//        AssertUtil.isTrue(StringUtils.isBlank(user.getPwd()), "密码不能为空");
         AssertUtil.isTrue(userDao.queryById(user.getId())==null, "用户不存在");
 
         User temp = userDao.queryUserByUserName(user.getName());
