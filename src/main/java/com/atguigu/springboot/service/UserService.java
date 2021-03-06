@@ -6,9 +6,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import com.atguigu.springboot.utils.AssertUtil;
 import com.atguigu.springboot.query.UserQuery;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import springfox.documentation.annotations.Cacheable;
 
 import java.util.List;
 
@@ -23,7 +27,10 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    //这里的value要和ehcache.xml文件里面的name保持一致
+    @Cacheable(value="users")
     public User queryUserByName(String name){
+        System.out.println("进入查询语句");
         return userDao.queryUserByUserName(name);
     }
 
@@ -49,6 +56,8 @@ public class UserService {
         AssertUtil.isTrue(userDao.save(user) < 1, "用户添加失败");
     }
 
+    @CacheEvict(value="users", key="#user.id")
+    @Transactional(propagation = Propagation.REQUIRED)
     public void updateUser(User user){
 //        AssertUtil.isTrue(StringUtils.isBlank(user.getName()), "用户名不能为空");
 //        AssertUtil.isTrue(StringUtils.isBlank(user.getPwd()), "密码不能为空");
@@ -59,11 +68,16 @@ public class UserService {
         AssertUtil.isTrue(userDao.update(user) < 1, "用户跟新失败");
     }
 
+    //添加这两个属性，每次访问接口，根据user删除缓存中的信息
+    @Transactional(propagation = Propagation.REQUIRED)
+    @CacheEvict(value = "users", allEntries=true)
     public void deleteUser(Integer userId){
         AssertUtil.isTrue(userDao.queryById(userId) == null || userId == null, "用户不存在");
         AssertUtil.isTrue(userDao.delete(userId) < 1, "删除用户失败");
     }
 
+    //通过这样，把参数拼接成字符串作为缓存的key值，当其中一个参数变化，就重新查询,不知道是不是版本问题，这个版本下的cachable没有key值
+//    @Cacheable(value="users", key="#userQuery.userName+'-'#userQuery.pageNum+'-'#userQuery.PageSize")
     public PageInfo<User> queryUserByParams(UserQuery userQuery){
         PageHelper.startPage(userQuery.getPageNum(), userQuery.getPageSize());
         List<User> users = userDao.selectByParame(userQuery);

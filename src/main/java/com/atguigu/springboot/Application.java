@@ -15,7 +15,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 //自定义扫描包路径
 @MapperScan("com.atguigu.springboot.dao")
 //开启缓存应用
-@EnableCaching
+//不知道啥猫病，已开启缓存就报错，先不开了，这个教程有点东西对不上
+//@EnableCaching
 public class Application {
     public static void main(String[] arge){
          ConfigurableApplicationContext run = SpringApplication.run(Application.class, arge);
