@@ -5,6 +5,10 @@
 
 <ehcache name="mycache">
     <diskStore path="C:ProgramFiles\java\cache"></diskStore>
+    <!--设置最大缓存数目-->
+    <!--数据是否持久化，给他设置false，不然timeout属性就会失效-->
+    <!--timeToIdleSeconds数据如果一直不被使用的话，最大允许的闲置时间-->
+    <!--memoryStoreEvictionPolicy缓存清除策略 LRU的意思 less frequent used 最近最少被使用的数据-->
     <defaultCache
                  maxElementsinMenmory="10000"
                  eternal="false"
@@ -15,8 +19,22 @@
                  memoryStoreEvictionPolicy="LRU"
     ></defaultCache>
 
+    <!--overflowToDisk缓存到期了是否保存到磁盘里-->
     <cache
             name="users"
+            eternal="false"
+            maxElementsInMemor="100"
+            overflowToDisk="false"
+            diskPersisitent="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="300"
+            memoryStoreEvictionPolicy="LRU"
+    >
+    </cache>
+
+    <!--可以添加多个缓存模块，换成其他的name就可以了-->
+    <cache
+            name="users.name"
             eternal="false"
             maxElementsInMemor="100"
             overflowToDisk="false"
