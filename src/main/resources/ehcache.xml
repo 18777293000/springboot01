@@ -1,0 +1,29 @@
+
+
+<!--ehcache缓存配置-->
+<!--这些属性都由application.proerty文件进行配置，然后进入这个文件进行扫描读取，载入spring中使用-->
+
+<ehcache name="mycache">
+    <diskStore path="C:ProgramFiles\java\cache"></diskStore>
+    <defaultCache
+                 maxElementsinMenmory="10000"
+                 eternal="false"
+                 timeToIdleSeconds="120"
+                 timeToLiveSeconds="120"
+                 maxElementsOnDisk="10000000"
+                 diskExpiryThreadIntervalSeconds="120"
+                 memoryStoreEvictionPolicy="LRU"
+    ></defaultCache>
+
+    <cache
+            name="users"
+            eternal="false"
+            maxElementsInMemor="100"
+            overflowToDisk="false"
+            diskPersisitent="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="300"
+            memoryStoreEvictionPolicy="LRU"
+    >
+    </cache>
+</ehcache>
