@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 /**
  * @创建人 ym
  * @创建时间 2021/3/4 0004
@@ -11,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "用户实体对象")
-public class User {
+public class User implements Serializable {
 
     @ApiModelProperty(value = "用户ID")
     private Integer id;
