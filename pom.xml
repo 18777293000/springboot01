@@ -97,6 +97,13 @@
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
         </dependency>
+
+        <!--定时调度框架的使用依赖，比如定时查询用户在线时间，超过某个值就断开连接，比如定时清理某些数据缓存-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
