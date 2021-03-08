@@ -38,6 +38,7 @@ public class UserService {
         return userDao.queryById(userId);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public void saveUser(User user){
 //        System.out.println(user.getId());
 //        System.out.println(user.getName());
@@ -68,12 +69,14 @@ public class UserService {
         AssertUtil.isTrue(userDao.update(user) < 1, "用户跟新失败");
     }
 
-    //添加这两个属性，每次访问接口，根据user删除缓存中的信息
+    //声明式事务，这个注释是一个全局错误管控，当这个delete方法中出现了错误的时候，即便错误出现在user.dao.delete之后，也依然回阻止数据的删除，对数据进行保护
     @Transactional(propagation = Propagation.REQUIRED)
+    //添加这个属性，每次访问接口，根据user删除缓存中的信息
     @CacheEvict(value = "users", allEntries=true)
     public void deleteUser(Integer userId){
         AssertUtil.isTrue(userDao.queryById(userId) == null || userId == null, "用户不存在");
         AssertUtil.isTrue(userDao.delete(userId) < 1, "删除用户失败");
+//        int a = 1/0;
     }
 
     //通过这样，把参数拼接成字符串作为缓存的key值，当其中一个参数变化，就重新查询,不知道是不是版本问题，这个版本下的cachable没有key值

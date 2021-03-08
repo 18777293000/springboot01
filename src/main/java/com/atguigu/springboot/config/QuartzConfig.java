@@ -20,15 +20,15 @@ public class QuartzConfig {
         return JobBuilder.newJob(MyFirstJob.class).storeDurably().build();
     }
 
-    @Bean
-    public Trigger trigger1(){
-        SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
-                .withIntervalInSeconds(1)
-                .repeatForever();
-        return TriggerBuilder.newTrigger()
-                .withIdentity("trigger1","group1")
-                .withSchedule(scheduleBuilder)
-                .forJob(jobDetail())
-                .build();
-    }
+//    @Bean
+//    public Trigger trigger1(){
+//        SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+//                .withIntervalInSeconds(1)
+//                .repeatForever();
+//        return TriggerBuilder.newTrigger()
+//                .withIdentity("trigger1","group1")
+//                .withSchedule(scheduleBuilder)
+//                .forJob(jobDetail())
+//                .build();
+//    }
 }
